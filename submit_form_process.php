@@ -77,6 +77,24 @@
             }
         }
 
+        function generateUnique16DigitNumber()
+        {
+            // Get the current timestamp in microseconds (or milliseconds, depending on your PHP version)
+            $timestamp = microtime(true) * 1000000;
+
+            // Generate a random number between 0 and 9999 (4 digits)
+            $randomNumber = mt_rand(0, 9999);
+
+            // Combine the timestamp and random number to create a 16-digit unique number
+            $uniqueNumber = sprintf('%010d%04d', $timestamp, $randomNumber);
+
+            return $uniqueNumber;
+        }
+
+        // Example usage:
+        $uniqueNumber = generateUnique16DigitNumber();
+        echo "Unique 16-Digit Number: " . $uniqueNumber;
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $conn = mysqli_connect("localhost", "root", "", "covid19_db");
