@@ -29,6 +29,34 @@
     <div class="container">
         <?php
 
+        $localArray = array(
+            'addr1' => 'CENTRAL- Club Lusitano -16
+                        Ice House Street (7/F) (Entrance
+                        at Duddell Street) - by Marina
+                        Medical',
+            'addr2' => 'CENTRAL - 9 Queen"s Road
+                        Central (Room 2101) - by
+                        Humanity & Health (Sinovac)',
+            'addr3' => 'CAUSEWAY BAY - Sino Plaza,
+                        255 Gloucester Road (11/F) - by
+                        HKIPHCA ',
+            'addr4' => 'CENTRAL - 9 Queen"s Road
+                        Central (Room 2101) - by
+                        Humanity & Health (Sinovac) ',
+            'addr5' => 'WONG CHUK HANG - 1 Nam
+                        Fung Path (1/F, Tower A) -
+                        Gleneagles Hospital Hong Kong
+                        (BioNTech - Toddler/ Paediatric)',
+            'addr6' => 'HUNG HOM-1 Wu Kwong
+                        Street (Shop 11) - by Dr. Leung
+                        Shu Piu Clinic ',
+            'addr7' => 'KOWLOON BAY - The
+                        Quayside, 77 Hoi Bun Road
+                        (Shop 7, 2/F) - by Quality
+                        Healthcare'
+            // Add more options as needed
+        );
+
         function encrypt($data)
         {
             // Generate a random encryption key (session key)
@@ -81,8 +109,10 @@
             $boc = $conn->real_escape_string($boc);
             $location = $conn->real_escape_string($location);
 
-            $abc = encrypt($hkid);
+            $encrupt_hkid = encrypt($hkid);
 
+            // echo $vaccinationDate;
+        
             // echo $boc;
             // Prepare and execute the SQL query
             $sql = "INSERT INTO covid19_table (enName, cnName,hkid, email, phoneNo, gender, dob, vaccinationDate, boc, location)
@@ -90,13 +120,13 @@
 
             $stmt = $conn->prepare($sql);
 
-            $stmt->bind_param("ssssisssss", $enName, $cnName, $abc, $email, $phoneNo, $gender, $dob, $vaccinationDate, $boc, $location);
+            $stmt->bind_param("ssssisssss", $enName, $cnName, $encrupt_hkid, $email, $phoneNo, $gender, $dob, $vaccinationDate, $boc, $location);
 
-
+            // return false;
             if ($stmt->execute()) {
                 echo "<div class='container'>";
                 echo "<h1>Reservation completed !</h1>";
-                echo "<p>Please attend on time. If you have any questions, please feel free to call us.</p>";
+                echo "<p style='font-size:12px'>Please attend on time. If you have any questions, please feel free to call us Tel: 2222 2222.</p>";
                 echo "<form>";
                 echo "<form>";
                 echo "<div class='form-group'>";
@@ -121,21 +151,20 @@
 
                 echo "<div class='form-group'>";
                 echo "<label for='vaccinationDate'>Vaccination Date:</label>";
-                echo "<input type='date' id='vaccinationDate' name='vaccinationDate' class='form-control' value='" . $vaccinationDate . "' disabled>";
+                echo "<input type='text' id='vaccinationDate' name='vaccinationDate' class='form-control' value='" . $vaccinationDate . "' disabled>";
                 echo "</div>";
 
                 echo "<div class='form-group'>";
                 echo "<label for='location'>Location:</label>";
-                echo "<input type='text' id='location' name='location' class='form-control' value='" . $location . "' disabled>";
+
+                echo " <textarea id='textareaContent' class='form-control' name='textareaContent' rows='4' cols='50' disabled>" . $localArray[$location] . " </textarea>";
+
+
                 echo "</div>";
 
                 echo "<button onclick='print()' class='btn btn-primary'>Print</button>";
                 echo "</form>";
                 echo "<br>";
-
-
-                // Repeat the above two blocks for other form fields (email, phoneNo, gender, etc.)
-        
                 echo "</form>";
                 echo "<br>";
                 exit();
