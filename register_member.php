@@ -2,22 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Add student</title>
+<title>Add Member</title>
 </head>
 
 
 <body>
-<p>Insert student information::</p>
-<form action="add_student_success.php" method="post" id="form1"> 
+<p>Insert information::</p>
+<form action="create_member_process.php" method="post" id="form1"> 
 <table width="400" border="0" cellpadding="5">
   <tr>
-    <td width="90">Student Name</td>
-    <td width="294"><label for="name"></label>
-    <input type="text" name="name" id="name" /></td>
+    <td width="90">Name</td>
+    <td width="294"><label for="username"></label>
+    <input type="text" name="username" id="username" /></td>
   </tr>
   <tr>
-    <td>Age</td>
-    <td><input type="text" name="age" id="age" /></td>
+    <td>Password</td>
+    <td><input type="text" name="password" id="password" /></td>
   </tr>
   <tr>
     <td><input name="submit" type="submit" value="submit"></td>

@@ -4,17 +4,29 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome to Student Information System!</title>
+    <title>COVID-19</title>
 </head>
 
 <body>
-    <h1><strong>Welcome to Student Information System!
+    <h1><strong>COVID-19
         </strong></h1>
-    <p>Select function:</p>
-    <p><a href="add_student_form.php">Add new student</a></p>
-    <p><a href="view_student.php">View Student information</a></p>
-    <p><a href="form.php">Form</a></p>
-    <p><a href="text_enscript.php">enscript</a></p>
+        <?php
+            session_start();
+            include "login_services.php";
+            // Start a session
+            
+            if (mysqli_num_rows($result) == 1) {
+                echo "123";
+                // User is authenticated, set a session or cookie to remember the user
+            } else {
+                echo "23";
+                // Authentication failed, display an error message
+            }
+
+        ?>
+    <p><a href="register_member.php">Register member</a></p>
+    <p><a href="create_booking_form.php">Create Reservation</a></p>
+    <p><a href="review_booking.php">Review Reservation</a></p>
     <p>&nbsp;</p>
 </body>
 

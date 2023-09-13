@@ -109,7 +109,7 @@
 
                 </select>
             </div>
-            <button class="btn btn-primary" type="submit">Validate</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </form>
     </div>
 

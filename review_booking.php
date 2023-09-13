@@ -1,10 +1,5 @@
 <?php
-// Connect to the database (replace with your database credentials)
-$conn = mysqli_connect("localhost", "devusr1", "kaRguGfRkpIS88MP", "covid19_db");
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("connect_db.php");
 
 // Query to retrieve data from the UserDetails table
 $query = "SELECT * FROM covid19_table";
