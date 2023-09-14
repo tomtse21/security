@@ -1,3 +1,7 @@
+<?php
+include "utils.php";
+checkAuthentication();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +30,7 @@
 <body>
     <div class="container" style="margin-top:50px">
         <h1>COVID-19 vaccination booking system </h1>
-        <form method="post" action="submit_form_process.php" onsubmit="return validateForm()">
+        <form method="post" action="create_form_process.php" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="enName">English Name:</label>
                 <input type="text" class="form-control" id="enName" name="enName" required>

@@ -1,10 +1,10 @@
 <?php
-// Connect to the database (replace with your database credentials)
-$conn = mysqli_connect("localhost", "", "", "covid19_db");
+include "utils.php";
+checkAuthentication();
+?>
+<?php
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("connect_db.php");
 
 // Query to retrieve data from the UserDetails table
 $query = "SELECT * FROM covid19_table";
@@ -15,7 +15,7 @@ if ($result) {
     echo "<h1>Booking record</h1>";
     echo "<table class='table table-bordered table-striped'>";
     echo "<thead class='thead-dark'>";
-    echo "<tr><th>English Name</th><th>Chinese Name</th><th>Email</th><th>Phone No</th><th>Gender</th><th>Date of Birth</th><th>Vaccination Date</th><th>BOC</th><th>Location</th></tr>";
+    echo "<tr><th>English Name</th><th>Chinese Name</th><th>Email</th><th>HKID</th><th>Phone No</th><th>Gender</th><th>Date of Birth</th><th>Vaccination Date</th><th>BOC</th><th>Location</th></tr>";
     echo "</thead>";
     echo "<tbody>";
 
@@ -24,6 +24,7 @@ if ($result) {
         echo "<td>" . $row['enName'] . "</td>";
         echo "<td>" . $row['cnName'] . "</td>";
         echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['hkId'] . "</td>";
         echo "<td>" . $row['phoneNo'] . "</td>";
         echo "<td>" . $row['gender'] . "</td>";
         echo "<td>" . $row['dob'] . "</td>";

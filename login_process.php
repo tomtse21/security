@@ -22,6 +22,8 @@ $row = $result->fetch_assoc();
 if (mysqli_num_rows($result) == 1) {
 
     $_SESSION['username'] = $username;
+    $_SESSION['authenticated'] = true;
+    $_SESSION['role'] = $row['role'];
     session_regenerate_id();
     // Regenerate the session ID to prevent session fixation
     echo $row['password'];

@@ -1,7 +1,10 @@
 <?php
+include "utils.php";
+checkAuthentication();
+?>
+<?php
 session_start();
 include("connect_db.php");
-include("utils.php");
 
 if (isset($_POST['submit'])) {
     $hkId = $_POST['hkId'];
