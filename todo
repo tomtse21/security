@@ -1,7 +1,9 @@
-HKid regex --done
+--Basic Checking--
+HKid regex
 Check empty (front back)
-Hkid encode
-Password encode (Strong password)
-Access control (admin / staff)
-Hash/ encryption/ encode
-https://github.com/shermanfcm/HKID
+--Access control (admin / staff)--
+--encryption
+Hkid uses encryption
+Password Hash
+--Sql injection
+--Input Validation

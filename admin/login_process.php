@@ -1,6 +1,8 @@
 <?php
-include("utils.php");
-include("connect_db.php");
+include("../connect_db.php");
+include("../utils.php");
+?>
+<?php
 session_start();
 
 $username = $_POST['username'];
@@ -30,7 +32,7 @@ if (mysqli_num_rows($result) == 1) {
 
     if (password_verify($password, $row['password'])) {
         
-        header('Location: index.php');
+        header('Location: ./index.php');
     } else {
         echo "Access Deny";
     }

@@ -1,14 +1,14 @@
 <?php
 session_start();
 // Logout functionality
-// if (isset($_POST['logout'])) {
-//     session_start(); // Start or resume the session
-//     $_SESSION = array(); // Clear all session variables
-//     session_destroy(); // Destroy the session
-//     header("Location: index.php"); // Redirect to the login page
-//     exit(); // Stop script execution
+if (isset($_POST['logout'])) {
+    session_start(); // Start or resume the session
+    $_SESSION = array(); // Clear all session variables
+    session_destroy(); // Destroy the session
+    header("Location: ./login_page.php"); // Redirect to the login page
+    exit(); // Stop script execution
 
-// }
+}
 
 ?>
 
@@ -45,24 +45,21 @@ session_start();
         
         ?>
         <h2> </h2>
-        <?php if (!isset($_SESSION['username'])): ?>
-            <p><a href="create_booking_form.php">Create Reservation</a></p>
+
+        <?php if (($_SESSION['role']) == 'admin'): ?>
+            <p><a href="register_member.php">Register member</a></p>
+            <p><a href="show_all_result.php">Check all reservation</a></p>
+            
+        <?php elseif (($_SESSION['role']) == 'staff'): ?>
             <p><a href="review_booking.php">Review Reservation</a></p>
-        <?php else: ?>
-            <?php if (($_SESSION['role']) == 'admin'): ?>
-                <p><a href="register_member.php">Register member</a></p>
-                <p><a href="show_all_result.php">Check all reservation</a></p>
-                
-            <?php elseif (($_SESSION['role']) == 'staff'): ?>
-                <p><a href="review_booking.php">Review Reservation</a></p>
-            <?php else :?>
-                
-                <?php endif; ?>
-            <p>&nbsp;</p>
-            <form method="POST">
-                <button type="submit" class="btn btn-primary" name="logout">Logout</button>
-            </form>
-        <?php endif; ?>
+        <?php else :?>
+            
+            <?php endif; ?>
+        <p>&nbsp;</p>
+        <form method="POST">
+            <button type="submit" class="btn btn-primary" name="logout">Logout</button>
+        </form>
+
     </div>
 </body>
 

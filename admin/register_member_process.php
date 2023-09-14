@@ -9,9 +9,12 @@
 
 <body>
     <?php
+    include("../connect_db.php");
+    include("../utils.php");
+    ?>
+    <?php
 
     /* conect to database */
-    include("connect_db.php");
 
     // Your hCaptcha Secret Key
     $secretKey = 'ES_47641e8e62fd461392936d2b0e4a6ef1';
@@ -77,7 +80,7 @@
 
     ?>
     <p>Add student success!</p>
-    <p><a href="index.php">Go back to index page</a></p>
+    <p><a href="./index.php">Go back to index page</a></p>
 </body>
 
 </html>
