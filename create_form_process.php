@@ -132,7 +132,7 @@ include("utils.php");
 
             echo "</div>";
 
-            echo "<button onclick='print()' class='btn btn-primary'>Print</button>";
+
             echo "</form>";
             echo "<br>";
             echo "</form>";

@@ -1,4 +1,6 @@
 <?php
+include "utils.php";
+
 $localArray = array(
     'addr1' => 'CENTRAL- Club Lusitano -16
                         Ice House Street (7/F) (Entrance
@@ -141,9 +143,11 @@ function printInfo($data)
     echo " <textarea id='textareaContent' class='form-control' name='textareaContent' rows='4' cols='50' disabled>" . getAddr($data['location']) . " </textarea>";
 
 
-    echo "</div>";
-
-    echo "<button onclick='print()' class='btn btn-primary'>Print</button>";
+    echo "</div>";  
+        if(checkAuthentication()){
+        echo "<button onclick='print()' class='btn btn-primary'>Print</button>";
+        }
+  
     echo "</form>";
     echo "<br>";
     echo "</form>";
