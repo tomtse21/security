@@ -1,5 +1,4 @@
 <?php
-include "utils.php";
 
 $localArray = array(
     'addr1' => 'CENTRAL- Club Lusitano -16

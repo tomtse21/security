@@ -54,7 +54,7 @@ if (isset($_POST['logout'])) {
                 <p><a href="register_member.php">Register member</a></p>
                 <p><a href="result_table.php">Check all reservation</a></p>
                 
-            <?php elseif (($_SESSION['role']) == 'member'): ?>
+            <?php elseif (($_SESSION['role']) == 'staff'): ?>
                 <p><a href="review_booking.php">Review Reservation</a></p>
             <?php else :?>
                 

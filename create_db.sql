@@ -58,7 +58,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('admin','member') NOT NULL DEFAULT 'member'
+  `role` enum('admin','staff') NOT NULL DEFAULT 'staff'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -66,11 +66,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
-(8, 'tom', '$2y$10$Q2vddqcM3vJMwSH8fCOu/.cRmlu/veASV6zGCxyO8WsuoWsG8cP9u', 'member'),
+(8, 'tom', '$2y$10$Q2vddqcM3vJMwSH8fCOu/.cRmlu/veASV6zGCxyO8WsuoWsG8cP9u', 'staff'),
 (11, 'Zoo', '$2y$10$zPo5C7PGJprk8d2/ANOpeuV7dbPG14YXIWJeyUI7fMW9A4r2uoKQ.', 'admin'),
 (12, 'abc', '$2y$10$tVpnIjnBBJ8SomTwrQm0kOgHsNiiEmFfZXmrpKrDu9XTuIix0HXeG', 'admin'),
-(13, '123', '$2y$10$Qio/atYtfXSNdCR9rBmi4ePd1A68I.TYUSBAg2sSomr/kstl7Cbae', 'member'),
-(14, '', '$2y$10$pV.j9XL9WyXNe9ZGOuia3.Uz6P3I5ImHxrd.lfLtKUkS/U0D/xsEq', 'member');
+(13, '123', '$2y$10$Qio/atYtfXSNdCR9rBmi4ePd1A68I.TYUSBAg2sSomr/kstl7Cbae', 'staff'),
+(14, '', '$2y$10$pV.j9XL9WyXNe9ZGOuia3.Uz6P3I5ImHxrd.lfLtKUkS/U0D/xsEq', 'staff');
 
 --
 -- 已傾印資料表的索引

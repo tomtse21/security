@@ -1,5 +1,5 @@
 <?php
-include "utils.php";
+include("utils.php");
 checkAuthentication();
 ?>
 <?php
@@ -39,7 +39,7 @@ if ($result) {
     echo "</div>";
     $result->free();
 } else {
-    echo "Error: " . $mysqli->error;
+    echo "Error: " . $mysqli->$error;
 }
 
 $mysqli->close();

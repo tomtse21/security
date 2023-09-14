@@ -1,9 +1,9 @@
 <?php
 include("connect_db.php");
+include("utils.php");
 
 if (isset($_POST['submit'])) {
     $hkId = $_POST['hkId'];
-
     $hkId = $conn->real_escape_string($hkId);
     $table_name = "covid19_table";
     $en_data = encrypt($hkId);
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 
         $result->free();
     } else {
-        echo "Error: " . $mysqli->error;
+        echo "Error: " . $mysqli->$error;
     }
 
     $mysqli->close();
