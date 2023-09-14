@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2023 年 09 月 13 日 19:14
+-- 產生時間： 2023 年 09 月 14 日 11:40
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -31,7 +31,7 @@ CREATE TABLE `covid19_table` (
   `id` int(11) NOT NULL,
   `enName` varchar(50) NOT NULL,
   `cnName` varchar(50) NOT NULL,
-  `hkId` text NOT NULL,
+  `hkId` varchar(50) NOT NULL,
   `email` varchar(30) NOT NULL,
   `phoneNo` int(8) NOT NULL,
   `gender` varchar(5) NOT NULL,
@@ -46,8 +46,7 @@ CREATE TABLE `covid19_table` (
 --
 
 INSERT INTO `covid19_table` (`id`, `enName`, `cnName`, `hkId`, `email`, `phoneNo`, `gender`, `dob`, `vaccinationDate`, `boc`, `location`) VALUES
-(103, 'John Doe', '謝好', 'YlhtWXowZUVPZkNncjBkS3ZDTFBXQT09', '123@gmail.com', 12345678, 'men', '09/08/2001', '09/08/2001', 'bioNTech', 'addr1'),
-(104, 'John Doe', '謝好', 'VjVwVzFscjlZTE96WkcvNlltTWlvdz09', '123@gmail.com', 12345678, 'men', '09/08/2001', '09/08/2001', 'bioNTech', 'addr1');
+(105, 'John Doe', '謝好', 'YlhtWXowZUVPZkNncjBkS3ZDTFBXQT09', '123@gmail.com', 12345678, 'men', '09/08/2001', '09/08/2001', 'bioNTech', 'addr1');
 
 -- --------------------------------------------------------
 
@@ -67,9 +66,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
-(1, '123', '123', 'member'),
-(2, '12', '22', 'member'),
-(3, '12311', '1111', 'member');
+(8, 'tom', '$2y$10$Q2vddqcM3vJMwSH8fCOu/.cRmlu/veASV6zGCxyO8WsuoWsG8cP9u', 'member'),
+(11, 'Zoo', '$2y$10$zPo5C7PGJprk8d2/ANOpeuV7dbPG14YXIWJeyUI7fMW9A4r2uoKQ.', 'admin'),
+(12, 'abc', '$2y$10$tVpnIjnBBJ8SomTwrQm0kOgHsNiiEmFfZXmrpKrDu9XTuIix0HXeG', 'admin'),
+(13, '123', '$2y$10$Qio/atYtfXSNdCR9rBmi4ePd1A68I.TYUSBAg2sSomr/kstl7Cbae', 'member'),
+(14, '', '$2y$10$pV.j9XL9WyXNe9ZGOuia3.Uz6P3I5ImHxrd.lfLtKUkS/U0D/xsEq', 'member');
 
 --
 -- 已傾印資料表的索引
@@ -79,13 +80,15 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
 -- 資料表索引 `covid19_table`
 --
 ALTER TABLE `covid19_table`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `hkId` (`hkId`);
 
 --
 -- 資料表索引 `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
@@ -95,13 +98,13 @@ ALTER TABLE `users`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `covid19_table`
 --
 ALTER TABLE `covid19_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
