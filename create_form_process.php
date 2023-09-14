@@ -39,8 +39,6 @@ include("utils.php");
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-
-
             // Retrieve and sanitize form data
             $enName = $_POST["enName"];
             $cnName = $_POST["cnName"];
@@ -65,14 +63,25 @@ include("utils.php");
             $boc = $conn->real_escape_string($boc);
             $location = $conn->real_escape_string($location);
 
+            if(!isValidEmail($email)){
+                echo "<script> alert('Wrong email format')</script>";
+                echo '<script>window.history.back();</script>';
+            }
+
+            if (!isValidHKID($hkid)) {
+                echo "<script> alert('Wrong HKID format')</script>";
+                echo '<script>window.history.back();</script>';
+            }
+
             $table_name = "covid19_table";
             $en_data = encrypt($hkid);
 
             $de_data = decrypt($en_data);
 
-            $search_sql = "SELECT * from $table_name where hkID = (?)";
+            $search_sql = "SELECT * from $table_name where hkID = (?) and enName = (?) and dob = (?) ";
             $s_stmt = $conn->prepare($search_sql);
-            $s_stmt->bind_param("s", $en_data);
+            $s_stmt->bind_param("sss", $en_data, $enName, $dob);
+
             $s_stmt->execute();
 
 

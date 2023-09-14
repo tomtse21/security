@@ -141,11 +141,6 @@ function printInfo($data)
     echo "<label for='location'>Location:</label>";
     echo " <textarea id='textareaContent' class='form-control' name='textareaContent' rows='4' cols='50' disabled>" . getAddr($data['location']) . " </textarea>";
 
-
-    echo "</div>";  
-        if(checkAuthentication()){
-        echo "<button onclick='print()' class='btn btn-primary'>Print</button>";
-        }
   
     echo "</form>";
     echo "<br>";
@@ -161,5 +156,21 @@ function checkAuthentication()
         header("Location: login_page.php");
         exit(); // Stop script execution
     }
+}
+function isValidEmail($email)
+{
+    // Regular expression for a valid email address
+    $emailPattern = '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/';
+
+    // Test the email against the pattern
+    return preg_match($emailPattern, $email);
+}
+
+function isValidHKID($hkid)
+{
+    // Regular expression pattern for HKID
+    $hkidPattern = '/^[A-Z]\d{6}([0-9A])?$/';
+
+    return preg_match($hkidPattern, $hkid);
 }
 ?>

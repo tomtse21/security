@@ -15,7 +15,7 @@ $(function () {
             var preloadedData = {
                 enName: "John Doe",
                 cnName: "謝好",
-                hkid: "A12345678",
+                hkid: "A1234567",
                 email: "123@gmail.com",
                 phoneNo: 12345678,
                 gender: "men",
@@ -40,7 +40,49 @@ $(function () {
 
             // Set values for other fields as needed
         }
+        function isHKID(str) {
+            var strValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            if (str.length < 8)
+            { 
+                return false;
+            }
+            str = str.toUpperCase();    
+            var hkidPat = /^([A-Z]{1,2})([0-9]{6})([A0-9])$/;
+            var matchArray = str.match(hkidPat);    
+            if (matchArray == null)
+            {
+                return false;
+            }
+            var charPart = matchArray[1];
+            var numPart = matchArray[2];
+            var checkDigit = matchArray[3];    
+            var checkSum = 0;
+            if (charPart.length == 2) {
+                checkSum += 9 * (10 + strValidChars.indexOf(charPart.charAt(0)));
+                checkSum += 8 * (10 + strValidChars.indexOf(charPart.charAt(1)));
+            } else {
+                checkSum += 9 * 36;
+                checkSum += 8 * (10 + strValidChars.indexOf(charPart));
+            }
+
+            for (var i = 0, j = 7; i < numPart.length; i++, j--)
+            {
+                checkSum += j * numPart.charAt(i);
+            }
+            var remaining = checkSum % 11;
+            var verify = remaining == 0 ? 0 : 11 - remaining;
+            return verify == checkDigit || (verify == 10 && checkDigit == 'A');
+        }
+        
+        function isValidEmail(email) {
+            // Regular expression for a valid email address
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            // Test the email against the pattern
+            return emailPattern.test(email);
+        }
+
     });
 
-
+    
 });

@@ -30,7 +30,7 @@
         <form method="post" action="create_form_process.php" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="enName">English Name:</label>
-                <input type="text" class="form-control" id="enName" name="enName" required>
+                <input type="text" class="form-control" id="enName" name="enName" placeholder="e.g(CHAN TAI MAN)" required>
             </div>
 
             <div class="form-group">
@@ -40,12 +40,13 @@
 
             <div class="form-group">
                 <label for="hkid">HKID:</label>
-                <input type="text" class="form-control" id="hkid" name="hkid"  required>
+                <input type="text" class="form-control" id="hkid" name="hkid" maxlength="8" placeholder="e.g(A1234567)" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <!-- <input type="email" class="form-control" id="email" name="email" required> -->
+                <input class="form-control" id="email" name="email" required>
             </div>
 
             <div class="form-group">
@@ -63,12 +64,12 @@
 
             <div class="form-group">
                 <label for="dob">Date of birth:</label>
-                <input type="text" class="form-control" id="dob" name="dob" required>
+                <input type="text" class="form-control" id="dob" name="dob"  placeholder="mm/dd/yyy"  required>
             </div>
 
             <div class="form-group">
                 <label for="vaccinationDate">Vaccination date:</label>
-                <input type="text" class="form-control" id="vaccinationDate" name="vaccinationDate" required>
+                <input type="text" class="form-control" id="vaccinationDate" name="vaccinationDate"  placeholder="mm/dd/yyy"  required>
             </div>
 
             <div class="form-group">
@@ -116,24 +117,18 @@
 
     <!-- Include Bootstrap JS and jQuery from a CDN -->
     <!-- Include your custom CSS -->
+     <script src="index.js"></script>
+
     <script>
-        function validateForm() {
-            var chineseNameInput = document.getElementById("cnName");
-            var chineseName = chineseNameInput.value.trim();
+         function isValidEmail(email) {
+            // Regular expression for a valid email address
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-            // Regular expression to match Chinese characters
-            var chineseRegex = /^[\u4e00-\u9fa5]+$/;
-
-            if (!chineseRegex.test(chineseName)) {
-                alert("Please enter a valid Chinese name.");
-                chineseNameInput.focus();
-                return false; // Prevent form submission
-            }
-
-            return true; // Allow form submission
+            // Test the email against the pattern
+            return emailPattern.test(email);
         }
 
-        function IsHKID(str) {
+        function isHKID(str) {
             var strValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             if (str.length < 8)
             { 
@@ -165,10 +160,39 @@
             var remaining = checkSum % 11;
             var verify = remaining == 0 ? 0 : 11 - remaining;
             return verify == checkDigit || (verify == 10 && checkDigit == 'A');
-            }
-    </script>
-    <script src="index.js"></script>
+        }
 
+        function validateForm() {
+            
+            var chineseNameInput = document.getElementById("cnName");
+            var chineseName = chineseNameInput.value.trim();
+            var email = $("#email").val();
+            var hkid = $("#hkid").val();
+            if(!isHKID(hkid)){
+                alert("Wrong HKID format")
+                $("#hkid").focus();
+                return false;
+            }
+            if(!isValidEmail(email)){
+                alert("Wrong email format");
+                $("#email").focus();
+                return false;
+            }
+            // Regular expression to match Chinese characters
+            var chineseRegex = /^[\u4e00-\u9fa5]+$/;
+
+            if (!chineseRegex.test(chineseName)) {
+                alert("Please enter a valid Chinese name.");
+                chineseNameInput.focus();
+                return false; // Prevent form submission
+            }
+
+            return true; // Allow form submission
+        }
+
+        
+    </script>
+   
 
 </body>
 

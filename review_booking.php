@@ -3,14 +3,24 @@ include("connect_db.php");
 include("utils.php");
 
 if (isset($_POST['submit'])) {
-    $hkId = $_POST['hkId'];
+    $hkId = $_POST['hkid'];
+    $enName = $_POST['enName'];
+    $dob = $_POST['dob'];
     $hkId = $conn->real_escape_string($hkId);
+    $enName = $conn->real_escape_string($enName);
+    $dob = $conn->real_escape_string($dob);
+
+    if (!isValidHKID($hkid)) {
+        echo "<script> alert('Wrong HKID format')</script>";
+        echo '<script>window.history.back();</script>';
+    }
+    
     $table_name = "covid19_table";
     $en_data = encrypt($hkId);
-
-    $search_user_query = "SELECT * from $table_name where hkID = (?)";
+    
+    $search_user_query = "SELECT * from $table_name where hkID = (?) and enName = (?) and dob = (?) ";
     $s_stmt = $conn->prepare($search_user_query);
-    $s_stmt->bind_param("s", $en_data);
+    $s_stmt->bind_param("sss", $en_data,$enName,$dob);
     $s_stmt->execute();
 
     $result = $s_stmt->get_result();
@@ -53,7 +63,7 @@ if (isset($_POST['submit'])) {
     <!-- Include jQuery UI from a CDN -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <script src="index.js"></script>
 </head>
 
 <body>
@@ -61,8 +71,16 @@ if (isset($_POST['submit'])) {
         <h1>COVID-19 vaccination - Review Reservation </h1>
         <form method="POST">
             <div class="form-group">
-                <label for="hkId">HKID</label>
-                <input type="text" class="form-control"  name="hkId" required> </input>
+                <label for="hkid">HKID</label>
+                <input type="text" class="form-control"  id="hkid" name="hkid"  maxlength="8"  placeholder="e.g(A1234567)" required> </input>
+            </div>
+             <div class="form-group">
+                <label for="enName">English Name:</label>
+                <input type="text" class="form-control" id="enName" name="enName" placeholder="e.g(CHAN TAI MAN)"required>
+            </div>
+             <div class="form-group">
+                <label for="dob">Date of birth:</label>
+                <input type="text" class="form-control" id="dob" name="dob" placeholder="mm/dd/yyy" required>
             </div>
             <button class="btn btn-primary" type="submit" name="submit">Submit</button>
         </form>
