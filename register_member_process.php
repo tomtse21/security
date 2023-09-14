@@ -13,9 +13,52 @@
     /* conect to database */
     include("connect_db.php");
 
+    // Your hCaptcha Secret Key
+    $secretKey = 'ES_47641e8e62fd461392936d2b0e4a6ef1';
+
+    // Verify hCaptcha response
+    $response = $_POST['h-captcha-response'];
+    $url = 'https://hcaptcha.com/siteverify';
+    $data = [
+        'secret' => $secretKey,
+        'response' => $response,
+    ];
+
+    $options = [
+        'http' => [
+            'header' => 'Content-type: application/x-www-form-urlencoded',
+            'method' => 'POST',
+            'content' => http_build_query($data),
+        ],
+    ];
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    $jsonResult = json_decode($result);
+
+    if ($jsonResult->success) {
+        // hCaptcha verification successful
+        // Proceed with user registration logic
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        // Your registration logic goes here
+    
+        echo "Registration successful!";
+    } else {
+        // hCaptcha verification failed
+        echo "hCaptcha verification failed. Please try again.";
+        header("Location: register_member.php"); // Redirect to the login page
+        exit(); // Stop script execution
+    
+    }
     /* Get form data */
     $username = $_POST['username'];
     $password = $_POST['password'];
+
+    if (!isset($username) && !isset($password)) {
+        header("Location: register_member.php"); // Redirect to the login page
+        exit(); // Stop script execution
+    }
 
     $username = $conn->real_escape_string($username);
     $password = $conn->real_escape_string($password);

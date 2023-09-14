@@ -4,6 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://hcaptcha.com/1/api.js" async defer></script>
   <title>Add Member</title>
 </head>
 
@@ -21,6 +22,11 @@
       <tr>
         <td>Password</td>
         <td><input type="text" name="password" id="password" /></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="h-captcha" data-sitekey="64d4483e-46bf-4e85-8182-f00bced152a9"></div>
+        </td>
       </tr>
       <tr>
         <td><input name="submit" type="submit" value="submit"></td>
