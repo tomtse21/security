@@ -1,3 +1,15 @@
+<?php
+session_start();
+// Logout functionality
+if (isset($_POST['logout'])) {
+    // Unset session variables and destroy the session
+    session_unset();
+    session_destroy();
+
+}
+
+?>
+
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,24 +22,26 @@
 <body>
     <h1><strong>COVID-19
         </strong></h1>
-        <?php
-            session_start();
-            include "login_services.php";
-            // Start a session
-            
-            if (mysqli_num_rows($result) == 1) {
-                echo "123";
-                // User is authenticated, set a session or cookie to remember the user
-            } else {
-                echo "23";
-                // Authentication failed, display an error message
-            }
+    <?php
 
-        ?>
-    <p><a href="register_member.php">Register member</a></p>
-    <p><a href="create_booking_form.php">Create Reservation</a></p>
-    <p><a href="review_booking.php">Review Reservation</a></p>
-    <p>&nbsp;</p>
+    // include "login_services.php";
+    // Start a session
+    
+
+    ?>
+    <h2>    </h2>
+    <?php if (!isset($_SESSION['username'])): ?>
+        <p><a href="login_page.php">Login</a></p>
+        <p><a href="register_member.php">Register member</a></p>
+    <?php else: ?>
+
+        <p><a href="create_booking_form.php">Create Reservation</a></p>
+        <p><a href="review_booking.php">Review Reservation</a></p>
+        <p>&nbsp;</p>
+        <form method="POST">
+            <button type="submit" name="logout">Logout</button>
+        </form>
+    <?php endif; ?>
 </body>
 
 </html>

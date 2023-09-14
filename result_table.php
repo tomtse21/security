@@ -1,6 +1,6 @@
 <?php
 // Connect to the database (replace with your database credentials)
-$conn = mysqli_connect("localhost", "devusr1", "kaRguGfRkpIS88MP", "covid19_db");
+$conn = mysqli_connect("localhost", "", "", "covid19_db");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
