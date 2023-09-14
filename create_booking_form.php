@@ -1,7 +1,4 @@
-<?php
-include "utils.php";
-checkAuthentication();
-?>
+
 <!DOCTYPE html>
 <html>
 

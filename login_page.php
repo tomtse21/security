@@ -1,33 +1,47 @@
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Login</title>
+    <meta charset="UTF-8" />
+    <title>COVID-19 vaccination booking system </title>
+
+    <!-- Include Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    <!-- Include Bootstrap CSS from a CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include Bootstrap Datepicker CSS and JavaScript files -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <!-- ✅ load jQuery ✅ -->
+    <!-- Include jQuery from a CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- Include jQuery UI from a CDN -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 
 
 <body>
-    <p>Login</p>
-    <form action="login_process.php" method="post" id="form1">
-        <table width="400" border="0" cellpadding="5">
-            <tr>
-                <td width="90">Name</td>
-                <td width="294"><label for="username"></label>
-                    <input type="text" name="username" id="username" />
-                </td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="text" name="password" id="password" /></td>
-            </tr>
-            <tr>
-                <td><input name="submit" type="submit" value="submit"></td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-    </form>
+    <div class="container" style="margin-top:50px">
+        <h1>COVID-19 vaccination - Login </h1>
+        <form action="login_process.php" method="post" id="form1">
+            <div class="form-group">
+               
+                <div class="form-group">
+                    <label for="username">Username </label>
+                    <input type="text" class="form-control"  name="username" id="username" />
+                </div>
+                <div class="form-group">
+                    <label for="username">Password </label>
+                    <input type="password"class="form-control"  name="password" id="password" />
+                </div>
+                <button class="btn btn-primary" type="submit" name="submit">Submit</button>               
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

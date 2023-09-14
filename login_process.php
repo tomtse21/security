@@ -26,13 +26,12 @@ if (mysqli_num_rows($result) == 1) {
     $_SESSION['role'] = $row['role'];
     session_regenerate_id();
     // Regenerate the session ID to prevent session fixation
-    echo $row['password'];
 
     if (password_verify($password, $row['password'])) {
 
         header('Location: index.php');
     } else {
-        echo "try again";
+        echo "Access Deny";
     }
 
     exit;
