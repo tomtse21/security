@@ -1,5 +1,5 @@
 <?php
-
+include("utils.php");
 include("connect_db.php");
 session_start();
 
@@ -24,11 +24,12 @@ if (mysqli_num_rows($result) == 1) {
     $_SESSION['username'] = $username;
     $_SESSION['authenticated'] = true;
     $_SESSION['role'] = $row['role'];
+
     session_regenerate_id();
     // Regenerate the session ID to prevent session fixation
 
     if (password_verify($password, $row['password'])) {
-
+        
         header('Location: index.php');
     } else {
         echo "Access Deny";
@@ -37,7 +38,7 @@ if (mysqli_num_rows($result) == 1) {
     exit;
 
 } else {
-    echo "Wrong username or password ";
+    wrongInfoAndBackPage();
 }
 
 

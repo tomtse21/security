@@ -10,11 +10,11 @@ if (isset($_POST['submit'])) {
     $enName = $conn->real_escape_string($enName);
     $dob = $conn->real_escape_string($dob);
 
-    if (!isValidHKID($hkid)) {
+    if (!isValidHKID($hkId)) {
         echo "<script> alert('Wrong HKID format')</script>";
         echo '<script>window.history.back();</script>';
     }
-    
+
     $table_name = "covid19_table";
     $en_data = encrypt($hkId);
     
@@ -33,7 +33,9 @@ if (isset($_POST['submit'])) {
 
         $result->free();
     } else {
-        echo "Error: " . $mysqli->$error;
+        noDataFoundAndBackPage();
+        $mysqli->close();
+        
     }
 
     $mysqli->close();

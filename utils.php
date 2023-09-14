@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $localArray = array(
     'addr1' => 'CENTRAL- Club Lusitano -16
@@ -141,6 +142,10 @@ function printInfo($data)
     echo "<label for='location'>Location:</label>";
     echo " <textarea id='textareaContent' class='form-control' name='textareaContent' rows='4' cols='50' disabled>" . getAddr($data['location']) . " </textarea>";
 
+    if(($_SESSION['authenticated'] && $_SESSION['role'] == 'staff') ){
+        echo "<br><button class='btn btn-primary' onClick='print()'>Print</button>";
+    }
+    
   
     echo "</form>";
     echo "<br>";
@@ -173,4 +178,22 @@ function isValidHKID($hkid)
 
     return preg_match($hkidPattern, $hkid);
 }
+
+function noDataFoundAndBackPage()
+{
+
+    echo "<script>";
+    echo "alert('Record not found.');";
+    echo "window.history.back();"; // Go back to the previous page
+    echo "</script>";
+}
+function wrongInfoAndBackPage()
+{
+
+    echo "<script>";
+    echo "alert('Wrong username or password not found.');";
+    echo "window.history.back();"; // Go back to the previous page
+    echo "</script>";
+}
+
 ?>
