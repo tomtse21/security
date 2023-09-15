@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Logout functionality
-if (isset($_POST['logout'])) {
+if (!isset($_SESSION['role']) || isset($_POST['logout'])  ) {
     session_start(); // Start or resume the session
     $_SESSION = array(); // Clear all session variables
     session_destroy(); // Destroy the session
