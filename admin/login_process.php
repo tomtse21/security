@@ -38,7 +38,7 @@ if ($numRows == 1) {
     // Regenerate the session ID to prevent session fixation
 
     if (password_verify($password, $row['password'])) {
-        
+        error_log("user enter");
         header('Location: ./index.php');
     } else {
         echo "Access Deny";

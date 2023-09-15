@@ -46,8 +46,6 @@
         $password = $_POST['password'];
 
         // Your registration logic goes here
-    
-        echo "Registration successful!";
     } else {
         // hCaptcha verification failed
         echo "hCaptcha verification failed. Please try again.";
@@ -66,6 +64,13 @@
 
     $username = $conn->real_escape_string($username);
     $password = $conn->real_escape_string($password);
+
+    if (!checkPasswordPattern($password)) {
+        echo "<script>alert('Please use strong password(combination of symbols, uppercase lowercase letters.')</script>";
+        header("Location: register_member.php"); // Redirect to the login page
+        exit(); // Stop script execution
+    }
+
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // hash password by password_hash
     $search_user_query = "INSERT INTO users  (username, password)  VALUES (?,?)";
     $s_stmt = $conn->prepare($search_user_query);

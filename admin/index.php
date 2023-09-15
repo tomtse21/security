@@ -1,7 +1,8 @@
 <?php
 session_start();
+
 // Logout functionality
-if (!isset($_SESSION['role']) || isset($_POST['logout'])  ) {
+if (!isset($_SESSION['role']) || isset($_POST['logout'])) {
     session_start(); // Start or resume the session
     $_SESSION = array(); // Clear all session variables
     session_destroy(); // Destroy the session
@@ -42,19 +43,19 @@ if (!isset($_SESSION['role']) || isset($_POST['logout'])  ) {
 
         <h1>COVID-19 Admin System</h1>
         <?php
-        echo "<p> Hello, ". $_SESSION['username']." | <b>Role: [".$_SESSION['role'],"]</b></p>";
+        echo "<p> Hello, " . $_SESSION['username'] . " | <b>Role: [" . $_SESSION['role'], "]</b></p>";
         ?>
         <h2> </h2>
 
         <?php if (($_SESSION['role']) == 'admin'): ?>
             <p><a href="register_member.php">Register member</a></p>
             <p><a href="../show_all_result.php">Check all reservation</a></p>
-            
+
         <?php elseif (($_SESSION['role']) == 'staff'): ?>
             <p><a href="../review_booking.php">Review Reservation</a></p>
-        <?php else :?>
-            
-            <?php endif; ?>
+        <?php else: ?>
+
+        <?php endif; ?>
         <p>&nbsp;</p>
         <form method="POST">
             <button type="submit" class="btn btn-primary" name="logout">Logout</button>

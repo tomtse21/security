@@ -67,8 +67,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
 (1, 'staff', '$2y$10$Q2vddqcM3vJMwSH8fCOu/.cRmlu/veASV6zGCxyO8WsuoWsG8cP9u', 'staff'),
-(2, 'admin', '$2y$10$zPo5C7PGJprk8d2/ANOpeuV7dbPG14YXIWJeyUI7fMW9A4r2uoKQ.', 'admin'),
-(3, 'admin', '$2y$10$tVpnIjnBBJ8SomTwrQm0kOgHsNiiEmFfZXmrpKrDu9XTuIix0HXeG', 'admin'),
+(2, 'admin', '$2y$10$Q2vddqcM3vJMwSH8fCOu/.cRmlu/veASV6zGCxyO8WsuoWsG8cP9u', 'admin'),
+(3, 'admin1', '$2y$10$tVpnIjnBBJ8SomTwrQm0kOgHsNiiEmFfZXmrpKrDu9XTuIix0HXeG', 'admin'),
 (4, '123', '$2y$10$Qio/atYtfXSNdCR9rBmi4ePd1A68I.TYUSBAg2sSomr/kstl7Cbae', 'staff');
 
 --

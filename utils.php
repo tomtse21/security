@@ -159,7 +159,7 @@ function checkAuthentication()
     if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
         // User is not authenticated, redirect to the login page
         header("Location: ./login_page.php");
-        exit(); // Stop script execution
+        exit; // Stop script execution
     }
 }
 function isValidEmail($email)
@@ -236,5 +236,13 @@ function getBoundSql($sql, $stmt)
 
     return $boundSql;
 }
+
+function checkPasswordPattern($password)
+{
+    $passwordPattern = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
+
+    return preg_match($passwordPattern, $password);
+}
+
 
 ?>

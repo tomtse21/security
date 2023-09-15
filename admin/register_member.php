@@ -24,11 +24,9 @@ checkAuthentication();
   <!-- Include jQuery UI from a CDN -->
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="index.js"></script>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script src="https://hcaptcha.com/1/api.js" async defer></script>
   <title>Add Member</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
@@ -64,6 +62,7 @@ checkAuthentication();
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     function validateForm() {
+      return true;
       const password = $("#password").val();
       const isValid = passwordPattern.test(password);
       if (isValid == false) {
