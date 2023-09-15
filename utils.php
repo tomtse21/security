@@ -142,11 +142,11 @@ function printInfo($data)
     echo "<label for='location'>Location:</label>";
     echo " <textarea id='textareaContent' class='form-control' name='textareaContent' rows='4' cols='50' disabled>" . getAddr($data['location']) . " </textarea>";
 
-    if(($_SESSION['authenticated'] && $_SESSION['role'] == 'staff') ){
+    if (($_SESSION['authenticated'] && $_SESSION['role'] == 'staff')) {
         echo "<br><button class='btn btn-primary' onClick='print()'>Print</button>";
     }
-    
-  
+
+
     echo "</form>";
     echo "<br>";
     echo "</form>";
@@ -196,7 +196,8 @@ function wrongInfoAndBackPage()
     echo "</script>";
 }
 
-function nameCheckSymbol($name){
+function nameCheckSymbol($name)
+{
     $pattern = "/^[A-Za-z \'']+$/";
 
     if (preg_match($pattern, $name)) {
@@ -229,7 +230,7 @@ function validation($name, $hkid, $email)
 // Function to get the SQL query with bind_param values
 function getBoundSql($sql, $stmt)
 {
-    
+
     $params = array_merge(array($sql), $stmt->bind_params);
     $boundSql = call_user_func_array('sprintf', $params);
 
