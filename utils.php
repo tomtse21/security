@@ -196,4 +196,36 @@ function wrongInfoAndBackPage()
     echo "</script>";
 }
 
+function nameCheckSymbol($name){
+    $pattern = '/^[A-Za-z0-9 ]+$/';
+
+    if (preg_match($pattern, $name)) {
+        // The name contains only valid characters (alphanumeric and spaces)
+        return true;
+    } else {
+        // Invalid characters found in the name
+        return false;
+    }
+}
+
+function validation($name, $hkid, $email)
+{
+    if (!isValidEmail($email)) {
+        echo "<script> alert('Wrong email format')</script>";
+        echo '<script>window.history.back();</script>';
+    }
+
+    if (!isValidHKID($hkid)) {
+        echo "<script> alert('Wrong HKID format')</script>";
+        echo '<script>window.history.back();</script>';
+    }
+    if (!nameCheckSymbol($name)) {
+        echo "<script> alert('Invalid name. Please use only alphanumeric characters and spaces.')</script>";
+        echo '<script>window.history.back();</script>';
+    }
+
+}
+
+
+
 ?>

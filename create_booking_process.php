@@ -33,10 +33,7 @@ include("utils.php");
     <div class="container">
         <?php
 
-
-
-
-
+       
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Retrieve and sanitize form data
@@ -63,16 +60,8 @@ include("utils.php");
             $boc = $conn->real_escape_string($boc);
             $location = $conn->real_escape_string($location);
 
-            if(!isValidEmail($email)){
-                echo "<script> alert('Wrong email format')</script>";
-                echo '<script>window.history.back();</script>';
-            }
-
-            if (!isValidHKID($hkid)) {
-                echo "<script> alert('Wrong HKID format')</script>";
-                echo '<script>window.history.back();</script>';
-            }
-
+            validation($enName,$hkid,$email);
+            
             $table_name = "covid19_table";
             $en_data = encrypt($hkid);
 
