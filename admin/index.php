@@ -40,9 +40,9 @@ if (isset($_POST['logout'])) {
 <body>
     <div class="container" style="margin-top:50px">
 
-        <h1>COVID-19</h1>
+        <h1>COVID-19 Admin System</h1>
         <?php
-        
+        echo "<p> Hello, ". $_SESSION['username']." | <b>Role: [".$_SESSION['role'],"]</b></p>";
         ?>
         <h2> </h2>
 
