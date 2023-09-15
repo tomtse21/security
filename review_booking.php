@@ -10,8 +10,13 @@ if (isset($_POST['submit'])) {
     $enName = $conn->real_escape_string($enName);
     $dob = $conn->real_escape_string($dob);
 
+    
     if (!isValidHKID($hkId)) {
         echo "<script> alert('Wrong HKID format')</script>";
+        echo '<script>window.history.back();</script>';
+    }
+    if (!nameCheckSymbol($enName)){
+        echo "<script> alert('Wrong name format')</script>";
         echo '<script>window.history.back();</script>';
     }
 
@@ -21,13 +26,18 @@ if (isset($_POST['submit'])) {
     $search_user_query = "SELECT * from $table_name where hkID = (?) and enName = (?) and dob = (?) ";
     $s_stmt = $conn->prepare($search_user_query);
     $s_stmt->bind_param("sss", $en_data,$enName,$dob);
-    $s_stmt->execute();
 
-    $result = $s_stmt->get_result();
+    $numRows = 0;
+    if ($s_stmt->execute()) {
+        // Get the result set
+        $result = $s_stmt->get_result();
+        // Get the number of rows returned
+        $numRows = $result->num_rows;
+
+    }
     $row = $result->fetch_assoc();
-
-
-    if (mysqli_num_rows($result) == 1) {
+    
+    if ($numRows == 1) {
 
         printInfo($row);
 
@@ -78,7 +88,7 @@ if (isset($_POST['submit'])) {
             </div>
              <div class="form-group">
                 <label for="enName">English Name:</label>
-                <input type="text" class="form-control" id="enName" name="enName" placeholder="e.g(CHAN TAI MAN)"required>
+                <input type="text" class="form-control" id="enName" name="enName" pattern="[A-Za-z ]*"  placeholder="e.g(CHAN TAI MAN)"required>
             </div>
              <div class="form-group">
                 <label for="dob">Date of birth:</label>

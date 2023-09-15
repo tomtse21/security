@@ -18,10 +18,17 @@ $s_stmt = $conn->prepare($search_user_query);
 $s_stmt->bind_param("s", $username);
 $s_stmt->execute();
 
-$result = $s_stmt->get_result();
+$numRows = 0;
+if ($s_stmt->execute()) {
+    // Get the result set
+    $result = $s_stmt->get_result();
+    // Get the number of rows returned
+    $numRows = $result->num_rows;
+
+}
 
 $row = $result->fetch_assoc();
-if (mysqli_num_rows($result) == 1) {
+if ($numRows == 1) {
 
     $_SESSION['username'] = $username;
     $_SESSION['authenticated'] = true;

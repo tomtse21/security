@@ -48,10 +48,10 @@ if (isset($_POST['logout'])) {
 
         <?php if (($_SESSION['role']) == 'admin'): ?>
             <p><a href="register_member.php">Register member</a></p>
-            <p><a href="show_all_result.php">Check all reservation</a></p>
+            <p><a href="../show_all_result.php">Check all reservation</a></p>
             
         <?php elseif (($_SESSION['role']) == 'staff'): ?>
-            <p><a href="review_booking.php">Review Reservation</a></p>
+            <p><a href="../review_booking.php">Review Reservation</a></p>
         <?php else :?>
             
             <?php endif; ?>

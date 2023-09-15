@@ -197,7 +197,7 @@ function wrongInfoAndBackPage()
 }
 
 function nameCheckSymbol($name){
-    $pattern = '/^[A-Za-z0-9 ]+$/';
+    $pattern = "/^[A-Za-z \'']+$/";
 
     if (preg_match($pattern, $name)) {
         // The name contains only valid characters (alphanumeric and spaces)
@@ -226,6 +226,14 @@ function validation($name, $hkid, $email)
 
 }
 
+// Function to get the SQL query with bind_param values
+function getBoundSql($sql, $stmt)
+{
+    
+    $params = array_merge(array($sql), $stmt->bind_params);
+    $boundSql = call_user_func_array('sprintf', $params);
 
+    return $boundSql;
+}
 
 ?>

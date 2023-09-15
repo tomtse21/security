@@ -67,18 +67,24 @@ include("utils.php");
 
             $de_data = decrypt($en_data);
 
-            $search_sql = "SELECT * from $table_name where hkID = (?) and enName = (?) and dob = (?) ";
+
+            $search_sql = "SELECT * from $table_name where hkID = (?) limit 1";
             $s_stmt = $conn->prepare($search_sql);
-            $s_stmt->bind_param("sss", $en_data, $enName, $dob);
+            $s_stmt->bind_param("s", $en_data);
 
-            $s_stmt->execute();
+            $numRows = 0;
+            if ($s_stmt->execute()) {
+                // Get the result set
+                $result = $s_stmt->get_result();
+                // Get the number of rows returned
+                $numRows = $result->num_rows;
 
+            }
 
-            $result = $s_stmt->get_result();
             $row = $result->fetch_assoc();
 
-            if (mysqli_num_rows($result) == 1) {
-                printInfo($row);
+            if ($numRows == 1) {
+                echo "<script>alert('Reservation already exisit, please check details vai Review Reservation on Home page.');window.history.back()</script>";
                 exit;
             } else {
                 // insert

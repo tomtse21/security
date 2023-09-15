@@ -3,7 +3,9 @@ HKid regex
 Check empty (front back)
 --Access control (admin / staff)--
 --encryption
-Hkid uses encryption
+Hkid encryption
 Password Hash
---Sql injection
---Input Validation
+--Sql injection--
+--Input Validation--
+--data loss & data leak--
+git control
