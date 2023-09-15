@@ -37,21 +37,10 @@ session_start();
 
         ?>
         <h2> </h2>
-        <?php if (!isset($_SESSION['username'])): ?>
-            <p><a href="create_booking_form.php">Create Reservation</a></p>
-            <p><a href="review_booking.php">Review Reservation</a></p>
-        <?php else: ?>
-            <?php if (($_SESSION['role']) == 'admin'): ?>
-                <p><a href="register_member.php">Register member</a></p>
-                <p><a href="show_all_result.php">Check all reservation</a></p>
 
-            <?php elseif (($_SESSION['role']) == 'staff'): ?>
-                <p><a href="review_booking.php">Review Reservation</a></p>
-            <?php else: ?>
+        <p><a href="create_booking_form.php">Create Reservation</a></p>
+        <p><a href="review_booking.php">Review Reservation</a></p>
 
-            <?php endif; ?>
-            <p>&nbsp;</p>
-        <?php endif; ?>
     </div>
 </body>
 

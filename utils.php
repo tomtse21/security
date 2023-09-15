@@ -155,11 +155,18 @@ function printInfo($data)
 
 function checkAuthentication()
 {
-
-    if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+ session_start(); // Start or resume the session
+    if ($_SESSION['role'] != 'admin' ) {
+        echo "<script></script>";
         // User is not authenticated, redirect to the login page
-        header("Location: ./login_page.php");
+        header("Location: ./index.php");
         exit; // Stop script execution
+    } else if((!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true)){
+        session_start(); // Start or resume the session
+        $_SESSION = array(); // Clear all session variables
+        session_destroy(); // Destroy the session
+        header("Location: ../index.php"); // Redirect to the login page
+        exit(); // Stop script execution
     }
 }
 function isValidEmail($email)

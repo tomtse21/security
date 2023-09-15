@@ -56,6 +56,7 @@ if (isset($_POST['submit'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <title>COVID-19 vaccination booking system </title>
@@ -84,13 +85,15 @@ if (isset($_POST['submit'])) {
         <form method="POST">
             <div class="form-group">
                 <label for="hkid">HKID</label>
-                <input type="text" class="form-control"  id="hkid" name="hkid"  maxlength="8"  placeholder="e.g(A1234567)" required> </input>
+                <input type="text" class="form-control" id="hkid" name="hkid" maxlength="8" placeholder="e.g(A1234567)"
+                    required> </input>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label for="enName">English Name:</label>
-                <input type="text" class="form-control" id="enName" name="enName" pattern="[A-Za-z ]*"  placeholder="e.g(CHAN TAI MAN)"required>
+                <input type="text" class="form-control" id="enName" name="enName" pattern="[A-Za-z ]*"
+                    placeholder="e.g(CHAN TAI MAN)" required>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label for="dob">Date of birth:</label>
                 <input type="text" class="form-control" id="dob" name="dob" placeholder="mm/dd/yyy" required>
             </div>
