@@ -155,10 +155,10 @@ function printInfo($data)
 
 function checkAuthentication()
 {
-    session_start(); // Start or resume the session
+
     if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
         // User is not authenticated, redirect to the login page
-        header("Location: login_page.php");
+        header("Location: ./login_page.php");
         exit(); // Stop script execution
     }
 }
