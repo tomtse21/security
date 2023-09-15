@@ -48,8 +48,10 @@ if (!isset($_SESSION['role']) || isset($_POST['logout'])) {
         <h2> </h2>
 
         <?php if (($_SESSION['role']) == 'admin'): ?>
-            <p><a href="register_member.php">Register member</a></p>
+            <p><a href="register_member.php">Register Staff</a></p>
+            <p><a href="member_control_page.php">Manage Staff account</a></p>
             <p><a href="../show_all_result.php">Check all reservation</a></p>
+
 
         <?php elseif (($_SESSION['role']) == 'staff'): ?>
             <p><a href="../review_booking.php">Review Reservation</a></p>
