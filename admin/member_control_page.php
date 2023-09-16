@@ -104,7 +104,7 @@ checkAuthentication();
                     if (confirmed) {
                         $.ajax({
                             type: "POST",
-                            url: "delete_member_process.php",
+                            url: "member_control_process.php",
                             data: {
                                 action: "delete",
                                 id: id

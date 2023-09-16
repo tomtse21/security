@@ -7,7 +7,7 @@ include("../utils.php");
 
 <?php 
 
-if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+// if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
     // Include your database connection code here
 
     // Check if a valid action is specified in the AJAX request
@@ -68,7 +68,5 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     } else {
         echo "No action specified.";
     }
-} else {
-    echo "This is not an AJAX request.";
-}
+
 ?>
