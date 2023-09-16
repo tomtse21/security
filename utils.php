@@ -251,5 +251,20 @@ function checkPasswordPattern($password)
     return preg_match($passwordPattern, $password);
 }
 
+function returnJsonResponse($success, $message, $data)
+{
+    $response = [
+        'success' => $success,
+        'message' => $message,
+        'data' => $data, // You can include additional data in the response
+    ];
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit(); // Exit to prevent further processing
+    
+}
 
+function isNotEmpty($data){
+    return isset($data) && is_string($data) && trim($data) !== '';
+}
 ?>
