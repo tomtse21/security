@@ -1,9 +1,13 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8" />
-    <title>COVID-19 vaccination booking system </title>
+    <title>Create Reservation </title>
 
     <!-- Include Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
@@ -25,7 +29,7 @@
 
 <body>
     <div class="container" style="margin-top:50px">
-        <h1>COVID-19 vaccination booking system </h1>
+        <h1>COVID-19 vaccination - Create Reservation </h1>
         <form method="post" action="create_booking_process.php" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="enName">English Name:</label>
@@ -114,7 +118,11 @@
                 </select>
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>
+
         </form>
+        <?php
+        include ('./back_event.php');
+        ?>
     </div>
 
     <!-- Include Bootstrap JS and jQuery from a CDN -->

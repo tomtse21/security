@@ -33,7 +33,7 @@ if ($numRows == 1) {
     $_SESSION['username'] = $username;
     $_SESSION['authenticated'] = true;
     $_SESSION['role'] = $row['role'];
-
+    $_SESSION['adminHomePage'] = './index.php';
     session_regenerate_id();
     // Regenerate the session ID to prevent session fixation
 

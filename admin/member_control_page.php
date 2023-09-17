@@ -52,6 +52,9 @@ checkAuthentication();
         }
         </style>
         <table>
+            <tr> <?php
+        include ('../admin_back_event.php');
+        ?></tr>
             <tr>
                 <th></th>
                 <th>ID</th>
@@ -133,7 +136,7 @@ checkAuthentication();
                     if (confirmed) {
                         $.ajax({
                             type: "POST",
-                            url: "delete_member_process.php",
+                            url: "member_control_page.php",
                             data: {
                                 action: "update",
                                 id: id,

@@ -1,19 +1,7 @@
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Add Student Success!</title>
-</head>
-
-<body>
-    <?php
+<?php
     include("../connect_db.php");
     include("../utils.php");
 
-    ?>
-    <?php
 
     captchaValidation();
     
@@ -43,9 +31,9 @@
     
     try {
         if ($s_stmt->execute()) {
-
-            $_SESSION['username'] = $username;
-
+            $_SESSION['alert_message'] = "Create account successfully.";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit(); // Stop script execution
         } else {
             echo "Error: " . $s_stmt->error;
             exit;
@@ -55,6 +43,7 @@
         header("Location: " . $_SERVER['HTTP_REFERER']);
         exit(); // Stop script execution
     }
+    
 
     function captchaValidation(){
         $secretKey = 'ES_47641e8e62fd461392936d2b0e4a6ef1';
@@ -86,16 +75,10 @@
 
             // Your registration logic goes here
         } else {
-            // hCaptcha verification failed
-            echo "<script>hCaptcha verification failed. Please try again.</script>";
-            header("Location: register_member.php"); // Redirect to the login page
+            // hCaptcha verification failed 
+            $_SESSION['alert_message'] = "hCaptcha verification failed. Please try again.";
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             exit(); // Stop script execution
-        
         }
     }
     ?>
-    <p>Add student success!</p>
-    <p><a href="./index.php">Go back to index page</a></p>
-</body>
-
-</html>

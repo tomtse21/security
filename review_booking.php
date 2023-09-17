@@ -98,7 +98,13 @@ if (isset($_POST['submit'])) {
                 <input type="text" class="form-control" id="dob" name="dob" placeholder="mm/dd/yyy" required>
             </div>
             <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+
         </form>
+        <div>
+            <?php
+        include ('./back_event.php');
+        ?>
+        </div>
     </div>
 </body>
 

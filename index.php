@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$_SESSION['homePage'] = './index.php';
 
 ?>
 
@@ -32,7 +32,7 @@ session_start();
 <body>
     <div class="container" style="margin-top:50px">
 
-        <h1>COVID-19</h1>
+        <h1>COVID-19 vaccination booking system</h1>
         <?php
 
         ?>

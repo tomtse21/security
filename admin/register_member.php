@@ -62,11 +62,14 @@ checkAuthentication();
                     </td>
                 </tr>
                 <tr>
-                    <td><input name="submit" type="submit" value="submit"></td>
-                    <td>&nbsp;</td>
+                    <td> <?php
+        include ('../admin_back_event.php');
+        ?><input name="submit" type="submit" value="submit"></td>
                 </tr>
             </table>
         </form>
+
+
     </div>
     <script>
     const passwordInput = document.getElementById('password'); // Replace 'password' with the actual input field ID

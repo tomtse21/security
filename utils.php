@@ -145,6 +145,7 @@ function printInfo($data)
     if (($_SESSION['authenticated'] && $_SESSION['role'] == 'staff')) {
         echo "<br><button class='btn btn-primary' onClick='print()'>Print</button>";
     }
+    echo "<a href='javascript:history.back()'>Go Back</a>";
 
 
     echo "</form>";

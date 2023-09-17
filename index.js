@@ -1,6 +1,6 @@
 $(function () {
     $(document).ready(function () {
-        preloadFormData();
+        // preloadFormData();
         
         $('#dob').datepicker({
             format: 'yyyy-mm-dd' // You can customize the date format

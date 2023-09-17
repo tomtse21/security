@@ -51,7 +51,9 @@ checkAuthentication();
         }
         </style>
         <table>
-
+            <?php
+        include ('../admin_back_event.php');
+        ?>
 
             <?php
 
