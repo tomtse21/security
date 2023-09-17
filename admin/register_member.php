@@ -33,39 +33,47 @@ checkAuthentication();
     <div class="container" style="margin-top:50px">
         <h1>COVID-19 Admin System</h1>
         <p>Insert information:</p>
-        <div id="response" style="color:orange"></div>
-        <form method="post" id="form1">
+        <script>
+        // Check if the session variable is set
+        <?php if (isset($_SESSION['alert_message'])) : ?>
+        // Display the alert message
+        alert("<?php echo $_SESSION['alert_message']; ?>");
+        <?php
+        // Unset the session variable to remove it after displaying
+        unset($_SESSION['alert_message']);
+    endif;
+    ?>
+        </script>
+        <form action="register_member_process.php" method="post" id="form1" onsubmit="return validateForm()">
             <table width="400" border="0" cellpadding="5">
                 <tr>
                     <td width="90">Name</td>
                     <td width="294"><label for="username"></label>
-                        <input type="text" name="username" id="username" />
+                        <input type="text" name="username" id="username" required />
                     </td>
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="password" name="password" id="password" /></td>
+                    <td><input type="password" name="password" id="password" required /></td>
                 </tr>
                 <tr>
                     <td>
-                        <!-- <div class="h-captcha" data-sitekey="64d4483e-46bf-4e85-8182-f00bced152a9"></div> -->
+                        <div class="h-captcha" data-sitekey="64d4483e-46bf-4e85-8182-f00bced152a9"></div>
                     </td>
                 </tr>
                 <tr>
-                    <td><input id="submitReg" name="submit" type="submit" value="submit"></td>
+                    <td><input name="submit" type="submit" value="submit"></td>
                     <td>&nbsp;</td>
                 </tr>
             </table>
         </form>
-
     </div>
-
     <script>
     const passwordInput = document.getElementById('password'); // Replace 'password' with the actual input field ID
     const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     function validateForm() {
-        return true; //TODO
+        return true;
         const password = $("#password").val();
         const isValid = passwordPattern.test(password);
         if (isValid == false) {
@@ -74,32 +82,6 @@ checkAuthentication();
         }
         return isValid;
     }
-
-
-
-    document.getElementById('form1').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        dataObject = {
-            "username": $("#username").val(),
-            "password": $("#password").val()
-        }
-        var jsonData = JSON.stringify(dataObject);
-
-        // Make an AJAX POST request
-        fetch('register_member_process.php', {
-                method: 'POST',
-                body: jsonData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the response data
-                document.getElementById('response').innerHTML = data.message;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    });
     </script>
 
 </body>
